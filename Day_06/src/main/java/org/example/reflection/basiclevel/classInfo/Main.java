@@ -1,21 +1,33 @@
 package org.example.reflection.basiclevel.classInfo;
 
-import java.util.Scanner;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 
 public class Main {
     public static void main(String[] args) {
 
-        // Creating the scanner object
-        Scanner scanner = new Scanner(System.in);
+        // WRITING THE REFLECTION CODE IN THE MAIN CLASS
 
-        // User input for the class name
-        System.out.print("Enter the fully qualified class name: ");
-        String className = scanner.nextLine();
+        try{
+            // Taking the reference of the class (Metadata of class ast runtime)
+            Class<?> metadata = ClassInfo.class;
 
-        // Closing the scanner object
-        scanner.close();
+            // Taking reference of the constructor
+            Constructor<?> constructor = metadata.getDeclaredConstructor(String.class, int.class);
 
-        // Method call to display the class information
-        ClassInfo.displayClassDetails(className);
+            // Create object using constructor
+            Object obj = constructor.newInstance("Aman", 23);
+
+            // Taking reference of the methods of class
+            Method method = metadata.getMethod("display");
+
+            // Execute the method
+            method.invoke(obj);
+        }
+
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
