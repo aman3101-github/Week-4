@@ -26,7 +26,7 @@ public class Main {
         }
 
         catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }
